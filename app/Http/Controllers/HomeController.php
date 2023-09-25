@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    //
-
+    /**
+     * HomeController class for user management operations.
+     *
+     * @return void
+     */
     public function index()
     {
         $user = User::where('email', 'admin@admin.com')->first();
@@ -34,7 +37,7 @@ class HomeController extends Controller
                 'name' => 'motin Update',
                 'password' => bcrypt('654321')
             ]
-            );
+        );
         
         echo $user->id . '-' . $user->name;
         //user upsert
@@ -42,12 +45,13 @@ class HomeController extends Controller
             [
                 ['email' => 'motin1@admin.com', 'name' => 'motin Update', 'password' => bcrypt('654321')],
                 ['email' => 'admin1@admin.com', 'name' => 'admin', 'password' => bcrypt('123456')],
-            ],[
+            ],
+            [
                 'name','password','email'
             ]
-            );
-            foreach(User::all() as $user){
-                echo $user->id . '<br>' .  $user->name . '<br>' . $user->email;
-            }
+        );
+        foreach(User::all() as $user){
+            echo $user->id . '<br>' .  $user->name . '<br>' . $user->email;
+        }
     }
 }
